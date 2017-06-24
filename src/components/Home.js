@@ -10,7 +10,7 @@ export const Home = (props) => {
         <div>
             <div className="container is-fluid has-text-centered">
                 <div>
-                    <img src="img/treeinheaven.png" alt=""/>
+                    <img src="img/treeinheaven.webp" alt=""/>
                 </div>
                 <br></br>  
                 <div>
