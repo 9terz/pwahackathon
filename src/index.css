@@ -5,6 +5,31 @@ body {
   font-family: sans-serif;
 }
 
+.button.goto-cap{
+  font-family: 'Trirong' !important;
+  font-size: 1.3rem !important;
+  height: 50% !important;
+    background-color: #009c47;
+    border-color: black !important;
+}
+
+.button.goto-top{
+  font-family: 'Trirong' !important;
+  font-size: 1.3rem !important;
+  height: 50% !important;
+  background-color: #fff007;
+  
+  border-color: black !important;
+}
+
+.button.goto-prev{
+  font-family: 'Trirong' !important;
+  font-size: 1.3rem !important;
+  height: 50% !important;
+  background-color: #ff07ff;
+  border-color: black !important;
+}
+
 .mybtn.button {
   font-family: 'Trirong' !important;
   font-size: 1.3rem !important;
@@ -130,4 +155,14 @@ html {
   100%{
     transform: translateY(-200px);
   }
+}
+.ScratchCard__Canvas{
+  position: absolute;
+  top: 0px;
+  z-index: 1;
+  left: 0px;
+}
+
+#cameraMainDiv{
+  margin:0px !important;
 }

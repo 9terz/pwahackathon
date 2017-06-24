@@ -20,11 +20,12 @@ const imageReducer = (state = {
             };
             break;
         case "DEC_OPACITY":
+            let newOpacity = state.bgOpactiy - action.payload;
             var bg = document.getElementById("bg-jpg");
-            bg.style.opacity = state.bgOpactiy - action.payload;
+            bg.style.opacity = newOpacity;
             state = {
                 ...state,
-                bgOpactiy: state.bgOpactiy - action.payload
+                bgOpactiy: newOpacity
             };
             break;
     }
