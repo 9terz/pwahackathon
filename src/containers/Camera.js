@@ -3,12 +3,23 @@ import { connect } from "react-redux";
 import { withRouter } from 'react-router-dom'
 import Webcam from 'react-webcam';
 import FontAwesome from 'react-fontawesome';
+import ScratchCard from 'react-scratchcard';
 
 import { upLoadImage, decrementOpacity } from 'actions/imageAction';
 
 const Camera = class Camera extends React.Component {
     constructor(props) {
         super(props);
+        var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+        var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+        console.log('viewport:',w,h);
+        this.settings = {
+            width: w,
+            height: h,
+            image: '/img/grey.png',
+            finishPercent: 50,
+            onComplete: () => console.log('The card is now clear!')
+        };
         this.state = {
           screenshot: null,
           shakeProgress: 0,
@@ -16,7 +27,8 @@ const Camera = class Camera extends React.Component {
           video_h:0,
           acc_x: 0,
           acc_y: 0,
-          img_opa: 1.0
+          img_opa: 1.0,
+          step: 0
         };
     }
     setRef = (webcam) => {
@@ -45,10 +57,6 @@ const Camera = class Camera extends React.Component {
         console.log('upload image');
         this.props.upLoadImage(img);
     };
-    // uploadImage = () => {
-    //     console.log('upload image');
-    //     this.props.upLoadImage(this.state.screenshot)
-    // };
 
     decrementOpacity = (amount) => {
         console.log('dec',amount);
@@ -100,6 +108,14 @@ const Camera = class Camera extends React.Component {
             this.decrementOpacity(0.05);
             image.style.opacity = this.state.img_opa;
         }
+        if (this.state.img_opa - 0.05 <= 0 && this.state.step === 0) {
+            console.log('step2');
+            this.setState({step: 1});
+            let allcontent = document.getElementById("allcontent");
+            allcontent.style.display = "none";
+            let scratchDiv = document.getElementById("scratchDiv");
+            scratchDiv.style.display = "block"
+        }
     };
 
     componentDidMount(){
@@ -108,8 +124,8 @@ const Camera = class Camera extends React.Component {
         window.addEventListener('devicemotion', (event) =>{
             let x = event.acceleration.x;
             let y = event.acceleration.y;
-            this.setState({acc_x:x});
-            this.setState({acc_y:y});
+            this.setState({acc_x: x});
+            this.setState({acc_y: y});
             if (x > 10 || y > 10){
                 this.setState({
                     shakeProgress: this.state.shakeProgress + 1
@@ -122,6 +138,14 @@ const Camera = class Camera extends React.Component {
                     that.decrementOpacity(0.05);
                     image.style.opacity = this.state.img_opa;
                 }
+                if (this.state.img_opa - 0.05 <= 0) {
+                    console.log('step2');
+                    this.setState({step: 1});
+                    let allcontent = document.getElementById("allcontent");
+                    allcontent.style.display = "none";
+                    let scratchDiv = document.getElementById("scratchDiv");
+                    scratchDiv.style.display = "block"
+                }
             }
         });
         this.opencamera();
@@ -130,45 +154,52 @@ const Camera = class Camera extends React.Component {
 
     render() {
         return (
-            <div className="container is-fluid has-text-centered">
+            <div id="cameraMainDiv" className="container is-fluid has-text-centered">
                 <canvas id="c" style={{'display':'none'}}></canvas>
-                <div id="snow">
-                    {this.state.screenshot ?
-                        <img id="my-image" src={this.state.screenshot}/>
-                        :
-                        <video id="my-video"/>
-                        }
-                    { this.state.screenshot && this.state.img_opa > 0 &&
-                        <div id="diode" className="diode">
-                            <div id="laser" className="laser" >
-                                <p style={{'color':'red','fontSize':'200%'}}>เขย่าเพื่อโรยแป้ง</p>
+                <div id="allcontent">
+                    <div id="snow">
+                        {this.state.screenshot ?
+                            <img id="my-image" src={this.state.screenshot}/>
+                            :
+                            <video id="my-video"/>
+                            }
+                        { this.state.screenshot && this.state.img_opa > 0 &&
+                            <div id="diode" className="diode">
+                                <div id="laser" className="laser" >
+                                    <p style={{'color':'red','fontSize':'200%'}}>เขย่าเพื่อโรยแป้ง</p>
+                                </div>
                             </div>
-                        </div>
-                    }
+                        }
+                    </div>
+                    <div className="center-justified">
+                        {!this.state.screenshot &&
+                            <a className="mybtn button is-primary btn-lr-margin" onClick={this.capture}>
+                                <FontAwesome
+                                    className='super-crazy-colors'
+                                    name='camera-retro'
+                                    style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)' }}
+                                />
+                                &nbsp;จับภาพ
+                            </a>
+                            }
+                    </div>
+                    <p>{this.state.shakeProgress}</p>
+                    <a onClick={this.test}>increment</a>
+                    <a onClick={this.test}>swipe</a>
                     
                 </div>
-                <div className="center-justified">
-                    {!this.state.screenshot &&
-                        <a className="mybtn button is-primary btn-lr-margin" onClick={this.capture}>
-                            <FontAwesome
-                                className='super-crazy-colors'
-                                name='camera-retro'
-                                style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)' }}
-                            />
-                            &nbsp;จับภาพ
-                        </a>
-                        }
+                <div id="scratchDiv" style={{
+                    'display':'none',
+                    }}>
+                    <ScratchCard {...this.settings}>
+                        <div>
+                            <p>Hello</p>
+                        </div>
+                        {/*Congratulations! You WON!*/}
+                        
+                    </ScratchCard>
                 </div>
-                <br></br>
-                {/*<div>
-                    <a className="button is-primary" onClick={this.uploadImage}>ส่งผลไปยังเบื้องบน</a>
-                </div>*/}
                 
-                {/*<p>x: {this.state.acc_x}</p>
-                <p>y: {this.state.acc_y}</p>*/}
-                <p>{this.state.shakeProgress}</p>
-                <a onClick={this.test}>increment</a>
-                <a onClick={this.test}>swipe</a>
                 
             </div>
         );

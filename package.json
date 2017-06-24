@@ -13,6 +13,7 @@
     "react-redux": "^5.0.5",
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",
+    "react-scratchcard": "^1.1.2",
     "react-webcam": "^0.2.0",
     "redux": "^3.7.0",
     "redux-logger": "^3.0.6",

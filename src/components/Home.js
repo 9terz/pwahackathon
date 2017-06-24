@@ -10,19 +10,19 @@ export const Home = (props) => {
         <div>
             <div className="container is-fluid has-text-centered">
                 <div>
-                    <img src="img/treeinheaven.png" alt=""/>
+                    <img src="img/treeinheaven.webp" alt=""/>
                 </div>
                 <br></br>  
                 <div>
-                    <Link to={"/camera"}><a className="button is-primary">จับภาพลุ้นโชค !</a></Link>
+                    <Link to={"/camera"}><a className="button goto-cap">จับภาพลุ้นโชค !</a></Link>
                 </div>
                 <br></br>
                 <div>
-                    <Link to={"/top-rank"}><a className="button is-primary">เลขเด็ดเพลานี้</a></Link>
+                    <Link to={"/top-rank"}><a className="button goto-top">เลขเด็ดเพลานี้</a></Link>
                 </div>
                 <br></br>
                 <div>
-                    <Link to={"/previous"}><a className="button is-primary">เรียงเบอร์เพลาก่อน</a></Link>
+                    <Link to={"/previous"}><a className="button goto-prev">เรียงเบอร์เพลาก่อน</a></Link>
                 </div>
             </div>
             <br></br>
