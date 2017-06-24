@@ -6,7 +6,6 @@ import App from 'containers/App';
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 import 'bulma/css/bulma.css'
-
 import store from './store'
 
 ReactDOM.render(

@@ -103,13 +103,14 @@ const Camera = class Camera extends React.Component {
                 </div>
                 <div>
                     {this.state.screenshot ?
-                        <a className="button is-primary" onClick={this.recapture}>ถ่ายใหม่</a>
+                        <a className="button is-primary" onClick={this.recapture}>จับภาพอีกครั้งหนึ่ง</a>
                         :
-                        <a className="button is-primary" onClick={this.capture}>ถ่ายรูป</a>
+                        <a className="button is-primary" onClick={this.capture}>จับภาพ</a>
                         }
                 </div>
+                <br></br>
                 <div>
-                    <a className="button is-primary" onClick={this.uploadImage}>upload</a>
+                    <a className="button is-primary" onClick={this.uploadImage}>ส่งผลไปยังเบื้องบน</a>
                 </div>
                 <p>{this.state.shakeProgress}</p>
             </div>
