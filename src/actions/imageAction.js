@@ -2,10 +2,10 @@ import { storageRef } from './database';
 
 export function upLoadImage(dispatch, img) {
     console.log('upload image action called');
-        var imgRef = storageRef.child('xxx.jpg');
-
-        imgRef.putString(img)
-        .then(function(snapshot) {
+        const imgRef = storageRef.child('555.jpg');
+        console.log(img.replace('data:image/jpeg;base64,',''))
+        imgRef.putString(img.replace('data:image/jpeg;base64,',''),'base64')
+        .then((snapshot) => {
             console.log('Uploaded a raw string!');
           });
 

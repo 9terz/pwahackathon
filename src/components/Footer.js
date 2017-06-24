@@ -3,7 +3,7 @@ import React from "react";
 export const Footer = (props) => {
     return (
         <div>
-            <footer className="footer">
+            <footer className="footer thaibg">
             <div className="container">
                 <div class="content has-text-centered">
                 <p>
