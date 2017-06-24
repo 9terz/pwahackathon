@@ -10,7 +10,7 @@ export const Home = (props) => {
         <div>
             <div className="container is-fluid has-text-centered">
                 <div>
-                    <img src="http://bulma.io/images/placeholders/128x128.png"/>
+                    <img src="http://bulma.io/images/placeholders/128x128.png" alt=""/>
                 </div>
                 <div>
                     <Link to={"/camera"}><a className="button is-primary">ถ่ายรูปเช็คเลข !</a></Link>

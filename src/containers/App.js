@@ -6,11 +6,11 @@ import {
   Link
 } from 'react-router-dom'
 
-import { User } from "../components/User";
-import { Home } from "../components/Home";
-import { setName } from "../actions/userActions";
-import { Footer } from "../components/Footer";
-import { Camera } from "./Camera"; 
+import { User } from "components/User";
+import { Home } from "components/Home";
+import { setName } from "actions/userActions";
+import { Footer } from "components/Footer";
+import Camera from "./Camera";
 import { TopRank } from "./TopRank";
 import { Previous } from "./Previous";
 

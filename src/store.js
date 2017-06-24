@@ -3,9 +3,9 @@ import logger from "redux-logger";
 import thunk from "redux-thunk";
 import promise from "redux-promise-middleware";
 
-import math from "./reducers/mathReducer";
-import user from "./reducers/userReducer";
-import image from "./reducers/imageReducer";
+import math from "reducers/mathReducer";
+import user from "reducers/userReducer";
+import image from "reducers/imageReducer";
 
 export default createStore(
     combineReducers({
@@ -14,5 +14,4 @@ export default createStore(
         image
     }),
     {},
-    applyMiddleware(logger(), thunk, promise())
 );

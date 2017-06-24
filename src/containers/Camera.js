@@ -1,10 +1,11 @@
 import React from "react";
-import {connect} from "react-redux";
+import { connect } from "react-redux";
+import { withRouter } from 'react-router-dom'
 import Webcam from 'react-webcam';
-import { upLoadImage } from '../actions/imageAction';
-import { store } from '../store';
 
-export class Camera extends React.Component {
+import { upLoadImage } from 'actions/imageAction';
+
+const Camera = class Camera extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -19,7 +20,7 @@ export class Camera extends React.Component {
         const screenshot = this.webcam.getScreenshot();
         this.setState({ screenshot });
     };
-    
+
     recapture = () => {
         this.setState({ screenshot: null });
     };
@@ -37,7 +38,7 @@ export class Camera extends React.Component {
         return (
             <div className="container is-fluid has-text-centered">
                 <div>
-                    {this.state.screenshot ? 
+                    {this.state.screenshot ?
                         <img src={this.state.screenshot} />
                         :
                         <Webcam
@@ -49,9 +50,9 @@ export class Camera extends React.Component {
                         }
                 </div>
                 <div>
-                    {this.state.screenshot ? 
+                    {this.state.screenshot ?
                         <a className="button is-primary" onClick={this.recapture}>ถ่ายใหม่</a>
-                        : 
+                        :
                         <a className="button is-primary" onClick={this.capture}>ถ่าย</a>
                         }
                 </div>
@@ -63,20 +64,27 @@ export class Camera extends React.Component {
     }
 }
 
-// const mapStateToProps = (state) => {
-//   return {
-//     //   user: state.user,
-//     //   math: state.math
-//     img: state.img
-//   };
-// };
+const mapStateToProps = (state) => {
+  return {
+    //   user: state.user,
+    //   math: state.math
+    img: state.img
+  };
+};
 
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//         upLoadImage: (img) => {
-//             dispatch(upLoadImage(img));
-//         }
-//     };
-// };
+const mapDispatchToProps = (dispatch) => {
+    return {
+        upLoadImage: (img) => {
+            dispatch(upLoadImage(img));
+        }
+    };
+};
+
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  )(Camera)
+)
 // export default connect(state => state)(Camera)
 // export default connect(mapStateToProps, mapDispatchToProps)(Camera);
