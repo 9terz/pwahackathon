@@ -1,16 +1,15 @@
 import { storageRef } from './database';
 
-export function upLoadImage(img) {
-    return dispatch => {
-        console.log('upload image action called');
+export function upLoadImage(dispatch, img) {
+    console.log('upload image action called');
         var imgRef = storageRef.child('xxx.jpg');
-
-        dispatch(upLoadImagePrep(img));
 
         imgRef.putString(img)
         .then(function(snapshot) {
             console.log('Uploaded a raw string!');
-        });
+          });
+
+        return dispatch(upLoadImagePrep(img));
 
         // const guestsRef = database.ref('/guests');
         // guestsRef.push({
@@ -22,13 +21,11 @@ export function upLoadImage(img) {
         // .catch((error) => {
         //     // dispatch(addToInviteRejectedAction());
         // });
-
-    }
 }
 
-function upLoadImagePrep() {
+function upLoadImagePrep(img) {
   return {
         type: "UPLOAD",
-        // payload: img
+        payload: img
     };
 }

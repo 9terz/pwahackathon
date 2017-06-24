@@ -26,6 +26,7 @@ const Camera = class Camera extends React.Component {
     };
 
     uploadImage = () => {
+        this.props.upLoadImage(this.state.screenshot)
         // store.dispatch(upLoadImage(this.state.screenshot));
         console.log('upload image');
     };
@@ -75,7 +76,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         upLoadImage: (img) => {
-            dispatch(upLoadImage(img));
+            dispatch(upLoadImage(dispatch, img));
         }
     };
 };
