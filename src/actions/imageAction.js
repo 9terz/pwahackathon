@@ -2,30 +2,28 @@ import { storageRef } from './database';
 
 export function upLoadImage(dispatch, img) {
     console.log('upload image action called');
-        var imgRef = storageRef.child('xxx.jpg');
-
-        imgRef.putString(img)
-        .then(function(snapshot) {
-            console.log('Uploaded a raw string!');
-          });
-
-        return dispatch(upLoadImagePrep(img));
-
-        // const guestsRef = database.ref('/guests');
-        // guestsRef.push({
-        //     img
-        // })
-        // .then(() => {
-        //     // dispatch(addToInviteFulfilledAction({ name }));
-        // })
-        // .catch((error) => {
-        //     // dispatch(addToInviteRejectedAction());
-        // });
+    console.log(img);
+    const imgName = ''+new Date().valueOf()+'.jpg';
+    var imgRef = storageRef.child(imgName);
+    img = img.replace('data:image/jpeg;base64,', '');
+    console.log(img);
+    imgRef.putString(img, 'base64')
+    .then((snapshot) => {
+        console.log('Uploaded a raw string!');
+    });
+    dispatch(storeImgName(imgName));
+    return dispatch(upLoadImagePrep(img));
 }
-
 function upLoadImagePrep(img) {
   return {
         type: "UPLOAD",
         payload: img
+    };
+}
+
+function storeImgName(name) {
+    return {
+        type: "SET_NAME",
+        payload: name
     };
 }
