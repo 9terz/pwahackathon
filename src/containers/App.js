@@ -17,6 +17,13 @@ import { TopRank } from "./TopRank";
 import { Previous } from "./Previous";
 
 class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+          mute: false
+        };
+    }
+
     render() {
         return (
             <Router>
