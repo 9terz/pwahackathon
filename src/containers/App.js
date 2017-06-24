@@ -1,14 +1,14 @@
 import React from "react";
 import {connect} from "react-redux";
 import {
+    withRouter,
   BrowserRouter as Router,
   Route,
-  Link
 } from 'react-router-dom'
 
 import { User } from "components/User";
 import { Home } from "components/Home";
-import { setName } from "actions/userActions";
+// import { setName } from "actions/userActions";
 import { Footer } from "components/Footer";
 import Camera from "./Camera";
 import { TopRank } from "./TopRank";
@@ -38,9 +38,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setName: (name) => {
-            dispatch(setName(name));
-        }
     };
 };
 
