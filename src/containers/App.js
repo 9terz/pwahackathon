@@ -18,18 +18,15 @@ class App extends React.Component {
     render() {
         return (
             <Router>
-                
                 <div id="root-bg" className='thaibg'>
+                    <div className="grey-bg"></div>
                     <img id="bg-jpg" src="/img/huay.jpg" alt="just bg"/>
-                    <p>{this.props.image.bgOpactiy}</p>
                     <div>
                         <Route exact path="/" component={Home}/>
                         <Route path="/camera" component={Camera}/>
                         <Route path="/top-rank" component={TopRank}/>
                         <Route path="/previous" component={Previous}/>
                     </div>
-                    
-                
                 </div>
             </Router>
         );

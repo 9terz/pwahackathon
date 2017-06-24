@@ -21,7 +21,6 @@ const imageReducer = (state = {
             break;
         case "DEC_OPACITY":
             var bg = document.getElementById("bg-jpg");
-            // bg.style.backgroundColor = `rgba(0, 0, 0, ${})`;
             bg.style.opacity = state.bgOpactiy - action.payload;
             state = {
                 ...state,

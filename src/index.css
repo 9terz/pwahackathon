@@ -5,9 +5,9 @@ body {
   font-family: sans-serif;
 }
 
-.button.is-primary {
-  font-family: 'Trirong';
-  font-size: 2rem;
+.mybtn.button {
+  font-family: 'Trirong' !important;
+  font-size: 1.3rem !important;
   height: 50% !important;
 }
 #test {
@@ -19,17 +19,27 @@ body {
 }
 
 .thaibg {
+  
   /*background-image: url('/img/huay.jpg');
   background-position: center;
   background-size: cover;
   background-repeat: repeat;*/
+}
+.grey-bg{
+  z-index: -1001;
+  background-color: #d6d4d4;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 
 #bg-jpg {
   width: 100%;
   height: 100%;
   position: fixed;
-  z-index: -1000;
+  z-index: -100;
   top: 0;
   left: 0;
 }
@@ -73,3 +83,51 @@ html {
   50% {background-position: 500px 500px, 100px 200px, -100px 150px;}
   100% {background-position: 500px 1000px, 200px 400px, -100px 300px;}
 }	
+.btn-lr-margin{
+  margin-left: 2%;
+  margin-right: 2%;
+}
+.center-justified {
+    text-align: justify;
+    -moz-text-align-last: center;
+    text-align-last: center;
+}
+
+.laser {
+  font-family: 'Trirong' !important;
+  width: 150%;
+  margin-left: -25%;
+  background-color: tomato;
+  height: 1px;
+  position: absolute;
+  top: 40%;
+  z-index: 2;
+  box-shadow: 0 0 4px red;
+  animation: scanning 2s infinite;
+}
+.diode {
+  animation: beam .01s infinite;
+}
+@keyframes beam {
+  /*50% {
+    opacity: 0;
+  }*/
+}
+
+@keyframes scanning {
+  0% {
+    transform: translateY(-200px);
+  }
+  /*25% {
+    transform: translateY(0px);
+  }*/
+  50% {
+    transform: translateY(200px);
+  }
+  /*75% {
+    transform: translateY(0px);
+  }*/
+  100%{
+    transform: translateY(-200px);
+  }
+}

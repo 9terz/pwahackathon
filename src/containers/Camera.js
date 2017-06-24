@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from 'react-router-dom'
 import Webcam from 'react-webcam';
+import FontAwesome from 'react-fontawesome';
 
 import { upLoadImage, decrementOpacity } from 'actions/imageAction';
 
@@ -32,17 +33,22 @@ const Camera = class Camera extends React.Component {
         console.log(img);
         console.log('done');
         this.setState({ screenshot: img });
+        this.uploadImage(img);
+
     };
 
     recapture = () => {
         this.setState({ screenshot: null });
         this.opencamera();
     };
-
-    uploadImage = () => {
+    uploadImage = (img) => {
         console.log('upload image');
-        this.props.upLoadImage(this.state.screenshot)
+        this.props.upLoadImage(img);
     };
+    // uploadImage = () => {
+    //     console.log('upload image');
+    //     this.props.upLoadImage(this.state.screenshot)
+    // };
 
     decrementOpacity = (amount) => {
         console.log('dec',amount);
@@ -86,14 +92,14 @@ const Camera = class Camera extends React.Component {
         this.setState({
             shakeProgress: this.state.shakeProgress + 1
         });
-        if(this.state.shakeProgress > 1 && this.state.screenshot) {
-                    // var snowDiv = document.getElementById("snow");
-                    // snowDiv.className += " active";
-                    var image = document.getElementById("my-image");
-                    this.setState({img_opa: this.state.img_opa - 0.05})
-                    this.decrementOpacity(0.05);
-                    image.style.opacity = this.state.img_opa;
-                }
+        if(this.state.shakeProgress > 0 && this.state.screenshot) {
+            var snowDiv = document.getElementById("snow");
+            snowDiv.className = "snow active";
+            var image = document.getElementById("my-image");
+            this.setState({img_opa: this.state.img_opa - 0.05})
+            this.decrementOpacity(0.05);
+            image.style.opacity = this.state.img_opa;
+        }
     };
 
     componentDidMount(){
@@ -108,14 +114,15 @@ const Camera = class Camera extends React.Component {
                 this.setState({
                     shakeProgress: this.state.shakeProgress + 1
                 });
-            }
-            if(this.state.shakeProgress > 1 && this.state.screenshot) {
-                    // var snowDiv = document.getElementById("snow");
-                    // snowDiv.className += " active";
+                if(this.state.shakeProgress > 0 && this.state.screenshot) {
+                    var snowDiv = document.getElementById("snow");
+                    snowDiv.className = "snow active";
                     var image = document.getElementById("my-image");
-                    that.decrementOpacity(0.5);
-                    image.style.opacity = this.props.bgOpactiy;
+                    that.setState({img_opa: this.state.img_opa - 0.05})
+                    that.decrementOpacity(0.05);
+                    image.style.opacity = this.state.img_opa;
                 }
+            }
         });
         this.opencamera();
         
@@ -124,32 +131,45 @@ const Camera = class Camera extends React.Component {
     render() {
         return (
             <div className="container is-fluid has-text-centered">
-                <p>v2</p>
-                <a onClick={this.test}>increment</a>
-                
                 <canvas id="c" style={{'display':'none'}}></canvas>
-                <div>
+                <div id="snow">
                     {this.state.screenshot ?
                         <img id="my-image" src={this.state.screenshot}/>
                         :
                         <video id="my-video"/>
                         }
+                    { this.state.screenshot && this.state.img_opa > 0 &&
+                        <div id="diode" className="diode">
+                            <div id="laser" className="laser" >
+                                <p style={{'color':'red','fontSize':'200%'}}>เขย่าเพื่อโรยแป้ง</p>
+                            </div>
+                        </div>
+                    }
+                    
                 </div>
-                <div>
-                    {this.state.screenshot ?
-                        <a className="button is-primary" onClick={this.recapture}>จับภาพอีกครั้งหนึ่ง</a>
-                        :
-                        <a className="button is-primary" onClick={this.capture}>จับภาพ</a>
+                <div className="center-justified">
+                    {!this.state.screenshot &&
+                        <a className="mybtn button is-primary btn-lr-margin" onClick={this.capture}>
+                            <FontAwesome
+                                className='super-crazy-colors'
+                                name='camera-retro'
+                                style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)' }}
+                            />
+                            &nbsp;จับภาพ
+                        </a>
                         }
                 </div>
                 <br></br>
-                <div>
+                {/*<div>
                     <a className="button is-primary" onClick={this.uploadImage}>ส่งผลไปยังเบื้องบน</a>
-                </div>
+                </div>*/}
                 
-                <p>x: {this.state.acc_x}</p>
-                <p>y: {this.state.acc_y}</p>
+                {/*<p>x: {this.state.acc_x}</p>
+                <p>y: {this.state.acc_y}</p>*/}
                 <p>{this.state.shakeProgress}</p>
+                <a onClick={this.test}>increment</a>
+                <a onClick={this.test}>swipe</a>
+                
             </div>
         );
     }
