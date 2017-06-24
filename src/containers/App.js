@@ -21,8 +21,8 @@ class App extends React.Component {
         return (
             <Router>
                 <div id="root-bg" className='thaibg'>
+                    <div className="grey-bg"></div>
                     <img id="bg-jpg" src="/img/huay.jpg" alt="just bg"/>
-                    <p>{this.props.image.bgOpactiy}</p>
                     <div>
                         <Route exact path="/" component={Home}/>
                         <Route path="/camera" component={Camera}/>
