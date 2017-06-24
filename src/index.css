@@ -1,9 +1,15 @@
+@import url('https://fonts.googleapis.com/css?family=Trirong');
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
 }
 
+.button.is-primary {
+  font-family: 'Trirong';
+  font-size: 2rem;
+  height: 50% !important;
+}
 #test {
   font-size:110;
 }
@@ -13,7 +19,9 @@ body {
 }
 
 .thaibg {
-  background-image: url('/img/thai.jpg');
+  background-image: url('/img/huay.jpg');
+  background-position: center;
+  background-size: cover
 }
 
 html {

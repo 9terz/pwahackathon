@@ -10,6 +10,7 @@ const Camera = class Camera extends React.Component {
         super(props);
         this.state = {
           screenshot: null,
+          shakeProgress: 0
         };
     }
     setRef = (webcam) => {
@@ -26,13 +27,17 @@ const Camera = class Camera extends React.Component {
     };
 
     uploadImage = () => {
-        this.props.upLoadImage(this.state.screenshot)
-        // store.dispatch(upLoadImage(this.state.screenshot));
         console.log('upload image');
+        this.props.upLoadImage(this.state.screenshot)
     };
 
     componentDidMount(){
         console.log('camear did mount');
+        window.addEventListener('deviceorientation', (event) =>{
+            let x = event.beta;
+            let y = event.gamma;
+            this.state.shakeProgress+=x;
+        });
     }
 
     render() {
@@ -52,14 +57,16 @@ const Camera = class Camera extends React.Component {
                 </div>
                 <div>
                     {this.state.screenshot ?
-                        <a className="button is-primary" onClick={this.recapture}>ถ่ายใหม่</a>
+                        <a className="button is-primary" onClick={this.recapture}>จับภาพอีกครั้งหนึ่ง</a>
                         :
-                        <a className="button is-primary" onClick={this.capture}>ถ่าย</a>
+                        <a className="button is-primary" onClick={this.capture}>จับภาพ</a>
                         }
                 </div>
+                <br></br>
                 <div>
-                    <a className="button is-primary" onClick={this.uploadImage}>upload</a>
+                    <a className="button is-primary" onClick={this.uploadImage}>ส่งผลไปยังเบื้องบน</a>
                 </div>
+                <p>{this.state.shakeProgress}</p>
             </div>
         );
     }
@@ -67,8 +74,6 @@ const Camera = class Camera extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    //   user: state.user,
-    //   math: state.math
     img: state.img
   };
 };
@@ -87,5 +92,3 @@ export default withRouter(
     mapDispatchToProps,
   )(Camera)
 )
-// export default connect(state => state)(Camera)
-// export default connect(mapStateToProps, mapDispatchToProps)(Camera);

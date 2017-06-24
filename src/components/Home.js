@@ -14,15 +14,15 @@ export const Home = (props) => {
                 </div>
                 <br></br>  
                 <div>
-                    <Link to={"/camera"}><a className="button is-primary">ถ่ายรูปเช็คเลข !</a></Link>
+                    <Link to={"/camera"}><a className="button is-primary">จับภาพลุ้นโชค !</a></Link>
                 </div>
                 <br></br>
                 <div>
-                    <Link to={"/top-rank"}><a className="button is-primary">เลขเด็ดเดือนนี้</a></Link>
+                    <Link to={"/top-rank"}><a className="button is-primary">เลขเด็ดเพลานี้</a></Link>
                 </div>
                 <br></br>
                 <div>
-                    <Link to={"/previous"}><a className="button is-primary">เรียงเบอร์เดือนก่อน</a></Link>
+                    <Link to={"/previous"}><a className="button is-primary">เรียงเบอร์เพลาก่อน</a></Link>
                 </div>
             </div>
             <br></br>

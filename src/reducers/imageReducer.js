@@ -1,13 +1,21 @@
 const imageReducer = (state = {
     img: null,
-    uploaded: false
+    uploaded: false,
+    name: ''
 }, action) => {
     switch (action.type) {
         case "UPLOAD":
-            //TODO : upload img to firebase
+            console.log('reducer upload called');
             state = {
                 ...state,
                 upload: true
+            };
+            break;
+        case "SET_NAME":
+            console.log(`SET_NAME: ${action.payload}`);
+            state = {
+                ...state,
+                name: action.payload
             };
             break;
     }
