@@ -12,7 +12,10 @@ const Camera = class Camera extends React.Component {
           screenshot: null,
           shakeProgress: 0,
           video_w:0,
-          video_h:0
+          video_h:0,
+          acc_x: 0,
+          acc_y: 0,
+          img_opa: 1.0
         };
     }
     setRef = (webcam) => {
@@ -74,16 +77,38 @@ const Camera = class Camera extends React.Component {
         .catch(function(err) { console.log(err.name + ": " + err.message); });
         // always check for errors at the end.
     }
+    test = () => {
+        this.setState({
+            shakeProgress: this.state.shakeProgress + 1
+        });
+        if(this.state.shakeProgress > 1 && this.state.screenshot) {
+                    // var snowDiv = document.getElementById("snow");
+                    // snowDiv.className += " active";
+                    var image = document.getElementById("my-image");
+                    this.setState({img_opa: this.state.img_opa - 0.05})
+                    image.style.opacity = this.state.img_opa;
+                }
+    };
 
     componentDidMount(){
         
         console.log('camear did mount');
-        window.addEventListener('deviceorientation', (event) =>{
-            let x = event.beta;
-            let y = event.gamma;
-            this.setState({
-                shakeProgress: this.state.shakeProgress+x
-            });
+        window.addEventListener('devicemotion', (event) =>{
+            let x = event.acceleration.x;
+            let y = event.acceleration.y;
+            this.setState({acc_x:x});
+            this.setState({acc_y:y});
+            if (x > 10 || y > 10){
+                this.setState({
+                    shakeProgress: this.state.shakeProgress + 1
+                });
+            }
+            if(this.state.shakeProgress > 1 && this.state.screenshot) {
+                    // var snowDiv = document.getElementById("snow");
+                    // snowDiv.className += " active";
+                    var image = document.getElementById("my-image");
+                    image.style.opacity -= 0.05 
+                }
         });
         this.opencamera();
         
@@ -92,11 +117,13 @@ const Camera = class Camera extends React.Component {
     render() {
         return (
             <div className="container is-fluid has-text-centered">
+                <p>v2</p>
+                <a onClick={this.test}>increment</a>
                 
                 <canvas id="c" style={{'display':'none'}}></canvas>
                 <div>
                     {this.state.screenshot ?
-                        <img src={this.state.screenshot} />
+                        <img id="my-image" src={this.state.screenshot}/>
                         :
                         <video id="my-video"/>
                         }
@@ -112,6 +139,9 @@ const Camera = class Camera extends React.Component {
                 <div>
                     <a className="button is-primary" onClick={this.uploadImage}>ส่งผลไปยังเบื้องบน</a>
                 </div>
+                
+                <p>x: {this.state.acc_x}</p>
+                <p>y: {this.state.acc_y}</p>
                 <p>{this.state.shakeProgress}</p>
             </div>
         );
