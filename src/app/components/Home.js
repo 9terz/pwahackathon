@@ -12,7 +12,7 @@ export const Home = (props) => {
                 <div className="columns">
                     <div className="column">
                         
-                            <img src="http://bulma.io/images/placeholders/128x128.png">
+                            <img src="../../img/treeinheaven.png">
                             </img>
                     </div>
                     <div className="column">

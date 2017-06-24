@@ -61,7 +61,7 @@
 	
 	var _App2 = _interopRequireDefault(_App);
 	
-	var _store = __webpack_require__(/*! ./store */ 257);
+	var _store = __webpack_require__(/*! ./store */ 260);
 	
 	var _store2 = _interopRequireDefault(_store);
 	
@@ -24741,11 +24741,17 @@
 	
 	var _User = __webpack_require__(/*! ../components/User */ 253);
 	
-	var _Main = __webpack_require__(/*! ../components/Main */ 254);
+	var _Home = __webpack_require__(/*! ../components/Home */ 254);
 	
 	var _userActions = __webpack_require__(/*! ../actions/userActions */ 255);
 	
 	var _Footer = __webpack_require__(/*! ../components/Footer */ 256);
+	
+	var _Camera = __webpack_require__(/*! ./Camera */ 257);
+	
+	var _TopRank = __webpack_require__(/*! ./TopRank */ 258);
+	
+	var _Previous = __webpack_require__(/*! ./Previous */ 259);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -24773,54 +24779,12 @@
 	                _react2.default.createElement(
 	                    "div",
 	                    null,
-	                    _react2.default.createElement(
-	                        "ul",
-	                        null,
-	                        _react2.default.createElement(
-	                            "li",
-	                            null,
-	                            _react2.default.createElement(
-	                                _reactRouterDom.Link,
-	                                { to: "/" },
-	                                "Home"
-	                            )
-	                        ),
-	                        _react2.default.createElement(
-	                            "li",
-	                            null,
-	                            _react2.default.createElement(
-	                                _reactRouterDom.Link,
-	                                { to: "/about" },
-	                                "About"
-	                            )
-	                        ),
-	                        _react2.default.createElement(
-	                            "li",
-	                            null,
-	                            _react2.default.createElement(
-	                                _reactRouterDom.Link,
-	                                { to: "/topics" },
-	                                "Topics"
-	                            )
-	                        )
-	                    ),
-	                    _react2.default.createElement("hr", null),
-	                    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/", component: _User.User }),
-	                    _react2.default.createElement(_reactRouterDom.Route, { path: "/about", component: _Main.Main }),
-	                    _react2.default.createElement(_reactRouterDom.Route, { path: "/topics", component: _Footer.Footer })
+	                    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/", component: _Home.Home }),
+	                    _react2.default.createElement(_reactRouterDom.Route, { path: "/camera", component: _Camera.Camera }),
+	                    _react2.default.createElement(_reactRouterDom.Route, { path: "/top-rank", component: _TopRank.TopRank }),
+	                    _react2.default.createElement(_reactRouterDom.Route, { path: "/previous", component: _Previous.Previous })
 	                )
-	            )
-	
-	            // <div>
-	            //     <div classNam="container is-fluid">
-	            //         <a className="button is-info">Normal</a>
-	            //     </div>
-	            //     <Main changeUsername={() => this.props.setName("Anna")}/>
-	            //     <User username={this.props.user.name}/>
-	            //     <Footer/>
-	            // </div>
-	
-	            ;
+	            );
 	        }
 	    }]);
 	
@@ -26669,9 +26633,9 @@
 
 /***/ }),
 /* 235 */
-/*!**************************************************!*\
-  !*** ./~/react-router/~/path-to-regexp/index.js ***!
-  \**************************************************/
+/*!***********************************!*\
+  !*** ./~/path-to-regexp/index.js ***!
+  \***********************************/
 /***/ (function(module, exports, __webpack_require__) {
 
 	var isarray = __webpack_require__(/*! isarray */ 236)
@@ -27104,9 +27068,9 @@
 
 /***/ }),
 /* 236 */
-/*!*******************************************!*\
-  !*** ./~/react-router/~/isarray/index.js ***!
-  \*******************************************/
+/*!****************************!*\
+  !*** ./~/isarray/index.js ***!
+  \****************************/
 /***/ (function(module, exports) {
 
 	module.exports = Array.isArray || function (arr) {
@@ -28284,7 +28248,7 @@
 /***/ }),
 /* 254 */
 /*!************************************!*\
-  !*** ./src/app/components/Main.js ***!
+  !*** ./src/app/components/Home.js ***!
   \************************************/
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -28293,45 +28257,69 @@
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	exports.Main = undefined;
+	exports.Home = undefined;
 	
 	var _react = __webpack_require__(/*! react */ 183);
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _reactRouterDom = __webpack_require__(/*! react-router-dom */ 217);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var Main = exports.Main = function Main(props) {
+	var Home = exports.Home = function Home(props) {
 	    return _react2.default.createElement(
 	        "div",
 	        null,
 	        _react2.default.createElement(
 	            "div",
-	            { className: "row" },
+	            { className: "container is-fluid has-text-centered" },
 	            _react2.default.createElement(
 	                "div",
-	                { className: "col-xs-12" },
+	                { className: "columns" },
 	                _react2.default.createElement(
-	                    "h1",
-	                    null,
-	                    "The Main Page"
-	                )
-	            )
-	        ),
-	        _react2.default.createElement(
-	            "div",
-	            { className: "row" },
-	            _react2.default.createElement(
-	                "div",
-	                { className: "col-xs-12" },
+	                    "div",
+	                    { className: "column" },
+	                    _react2.default.createElement("img", { src: "http://bulma.io/images/placeholders/128x128.png" })
+	                ),
 	                _react2.default.createElement(
-	                    "button",
-	                    {
-	                        className: "btn btn-primary",
-	                        onClick: function onClick() {
-	                            return props.changeUsername('Anna');
-	                        } },
-	                    "Change the Username"
+	                    "div",
+	                    { className: "column" },
+	                    _react2.default.createElement(
+	                        _reactRouterDom.Link,
+	                        { to: "/camera" },
+	                        _react2.default.createElement(
+	                            "a",
+	                            { className: "button is-primary" },
+	                            "\u0E16\u0E48\u0E32\u0E22\u0E23\u0E39\u0E1B\u0E40\u0E0A\u0E47\u0E04\u0E40\u0E25\u0E02 !"
+	                        )
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    "div",
+	                    { className: "column" },
+	                    _react2.default.createElement(
+	                        _reactRouterDom.Link,
+	                        { to: "/top-rank" },
+	                        _react2.default.createElement(
+	                            "a",
+	                            { className: "button is-primary" },
+	                            "\u0E40\u0E25\u0E02\u0E40\u0E14\u0E47\u0E14\u0E40\u0E14\u0E37\u0E2D\u0E19\u0E19\u0E35\u0E49"
+	                        )
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    "div",
+	                    { className: "column" },
+	                    _react2.default.createElement(
+	                        _reactRouterDom.Link,
+	                        { to: "/previous" },
+	                        _react2.default.createElement(
+	                            "a",
+	                            { className: "button is-primary" },
+	                            "\u0E40\u0E23\u0E35\u0E22\u0E07\u0E40\u0E1A\u0E2D\u0E23\u0E4C\u0E40\u0E14\u0E37\u0E2D\u0E19\u0E01\u0E48\u0E2D\u0E19"
+	                        )
+	                    )
 	                )
 	            )
 	        )
@@ -28456,6 +28444,210 @@
 
 /***/ }),
 /* 257 */
+/*!**************************************!*\
+  !*** ./src/app/containers/Camera.js ***!
+  \**************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.Camera = undefined;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 183);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	// import {connect} from "react-redux";
+	
+	var Camera = exports.Camera = function (_React$Component) {
+	    _inherits(Camera, _React$Component);
+	
+	    function Camera() {
+	        _classCallCheck(this, Camera);
+	
+	        return _possibleConstructorReturn(this, (Camera.__proto__ || Object.getPrototypeOf(Camera)).apply(this, arguments));
+	    }
+	
+	    _createClass(Camera, [{
+	        key: "render",
+	        value: function render() {
+	            return _react2.default.createElement(
+	                "div",
+	                { className: "container is-fluid" },
+	                _react2.default.createElement(
+	                    "div",
+	                    { className: "columns" },
+	                    _react2.default.createElement(
+	                        "div",
+	                        { className: "column" },
+	                        _react2.default.createElement(
+	                            "figure",
+	                            { className: "image is-128x128" },
+	                            _react2.default.createElement("img", { src: "http://bulma.io/images/placeholders/128x128.png" })
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        "div",
+	                        { className: "column" },
+	                        _react2.default.createElement(
+	                            "a",
+	                            { className: "button is-primary" },
+	                            "\u0E16\u0E48\u0E32\u0E22"
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return Camera;
+	}(_react2.default.Component);
+
+/***/ }),
+/* 258 */
+/*!***************************************!*\
+  !*** ./src/app/containers/TopRank.js ***!
+  \***************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.TopRank = undefined;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 183);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	// import {connect} from "react-redux";
+	
+	var TopRank = exports.TopRank = function (_React$Component) {
+	    _inherits(TopRank, _React$Component);
+	
+	    function TopRank() {
+	        _classCallCheck(this, TopRank);
+	
+	        return _possibleConstructorReturn(this, (TopRank.__proto__ || Object.getPrototypeOf(TopRank)).apply(this, arguments));
+	    }
+	
+	    _createClass(TopRank, [{
+	        key: "render",
+	        value: function render() {
+	            return _react2.default.createElement(
+	                "div",
+	                { className: "container is-fluid" },
+	                _react2.default.createElement(
+	                    "div",
+	                    { className: "columns" },
+	                    _react2.default.createElement(
+	                        "div",
+	                        { className: "column" },
+	                        _react2.default.createElement(
+	                            "p",
+	                            null,
+	                            "Top rank"
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return TopRank;
+	}(_react2.default.Component);
+
+/***/ }),
+/* 259 */
+/*!****************************************!*\
+  !*** ./src/app/containers/Previous.js ***!
+  \****************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.Previous = undefined;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 183);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	// import {connect} from "react-redux";
+	
+	var Previous = exports.Previous = function (_React$Component) {
+	    _inherits(Previous, _React$Component);
+	
+	    function Previous() {
+	        _classCallCheck(this, Previous);
+	
+	        return _possibleConstructorReturn(this, (Previous.__proto__ || Object.getPrototypeOf(Previous)).apply(this, arguments));
+	    }
+	
+	    _createClass(Previous, [{
+	        key: "render",
+	        value: function render() {
+	            return _react2.default.createElement(
+	                "div",
+	                { className: "container is-fluid" },
+	                _react2.default.createElement(
+	                    "div",
+	                    { className: "columns" },
+	                    _react2.default.createElement(
+	                        "div",
+	                        { className: "column" },
+	                        _react2.default.createElement(
+	                            "p",
+	                            null,
+	                            "\u0E07\u0E27\u0E14\u0E17\u0E35\u0E48\u0E41\u0E25\u0E49\u0E27"
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return Previous;
+	}(_react2.default.Component);
+
+/***/ }),
+/* 260 */
 /*!**************************!*\
   !*** ./src/app/store.js ***!
   \**************************/
@@ -28469,23 +28661,23 @@
 	
 	var _redux = __webpack_require__(/*! redux */ 193);
 	
-	var _reduxLogger = __webpack_require__(/*! redux-logger */ 258);
+	var _reduxLogger = __webpack_require__(/*! redux-logger */ 261);
 	
 	var _reduxLogger2 = _interopRequireDefault(_reduxLogger);
 	
-	var _reduxThunk = __webpack_require__(/*! redux-thunk */ 264);
+	var _reduxThunk = __webpack_require__(/*! redux-thunk */ 267);
 	
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 	
-	var _reduxPromiseMiddleware = __webpack_require__(/*! redux-promise-middleware */ 265);
+	var _reduxPromiseMiddleware = __webpack_require__(/*! redux-promise-middleware */ 268);
 	
 	var _reduxPromiseMiddleware2 = _interopRequireDefault(_reduxPromiseMiddleware);
 	
-	var _mathReducer = __webpack_require__(/*! ./reducers/mathReducer */ 267);
+	var _mathReducer = __webpack_require__(/*! ./reducers/mathReducer */ 270);
 	
 	var _mathReducer2 = _interopRequireDefault(_mathReducer);
 	
-	var _userReducer = __webpack_require__(/*! ./reducers/userReducer */ 268);
+	var _userReducer = __webpack_require__(/*! ./reducers/userReducer */ 271);
 	
 	var _userReducer2 = _interopRequireDefault(_userReducer);
 	
@@ -28497,7 +28689,7 @@
 	}), {}, (0, _redux.applyMiddleware)((0, _reduxLogger2.default)(), _reduxThunk2.default, (0, _reduxPromiseMiddleware2.default)()));
 
 /***/ }),
-/* 258 */
+/* 261 */
 /*!*************************************!*\
   !*** ./~/redux-logger/lib/index.js ***!
   \*************************************/
@@ -28512,11 +28704,11 @@
 	
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 	
-	var _core = __webpack_require__(/*! ./core */ 259);
+	var _core = __webpack_require__(/*! ./core */ 262);
 	
-	var _helpers = __webpack_require__(/*! ./helpers */ 260);
+	var _helpers = __webpack_require__(/*! ./helpers */ 263);
 	
-	var _defaults = __webpack_require__(/*! ./defaults */ 263);
+	var _defaults = __webpack_require__(/*! ./defaults */ 266);
 	
 	var _defaults2 = _interopRequireDefault(_defaults);
 	
@@ -28638,7 +28830,7 @@
 
 
 /***/ }),
-/* 259 */
+/* 262 */
 /*!************************************!*\
   !*** ./~/redux-logger/lib/core.js ***!
   \************************************/
@@ -28654,9 +28846,9 @@
 	
 	exports.printBuffer = printBuffer;
 	
-	var _helpers = __webpack_require__(/*! ./helpers */ 260);
+	var _helpers = __webpack_require__(/*! ./helpers */ 263);
 	
-	var _diff = __webpack_require__(/*! ./diff */ 261);
+	var _diff = __webpack_require__(/*! ./diff */ 264);
 	
 	var _diff2 = _interopRequireDefault(_diff);
 	
@@ -28787,7 +28979,7 @@
 	}
 
 /***/ }),
-/* 260 */
+/* 263 */
 /*!***************************************!*\
   !*** ./~/redux-logger/lib/helpers.js ***!
   \***************************************/
@@ -28814,7 +29006,7 @@
 	var timer = exports.timer = typeof performance !== "undefined" && performance !== null && typeof performance.now === "function" ? performance : Date;
 
 /***/ }),
-/* 261 */
+/* 264 */
 /*!************************************!*\
   !*** ./~/redux-logger/lib/diff.js ***!
   \************************************/
@@ -28827,7 +29019,7 @@
 	});
 	exports.default = diffLogger;
 	
-	var _deepDiff = __webpack_require__(/*! deep-diff */ 262);
+	var _deepDiff = __webpack_require__(/*! deep-diff */ 265);
 	
 	var _deepDiff2 = _interopRequireDefault(_deepDiff);
 	
@@ -28916,7 +29108,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 262 */
+/* 265 */
 /*!******************************!*\
   !*** ./~/deep-diff/index.js ***!
   \******************************/
@@ -29348,7 +29540,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ }),
-/* 263 */
+/* 266 */
 /*!****************************************!*\
   !*** ./~/redux-logger/lib/defaults.js ***!
   \****************************************/
@@ -29402,7 +29594,7 @@
 	module.exports = exports["default"];
 
 /***/ }),
-/* 264 */
+/* 267 */
 /*!************************************!*\
   !*** ./~/redux-thunk/lib/index.js ***!
   \************************************/
@@ -29433,7 +29625,7 @@
 	exports['default'] = thunk;
 
 /***/ }),
-/* 265 */
+/* 268 */
 /*!**************************************************!*\
   !*** ./~/redux-promise-middleware/dist/index.js ***!
   \**************************************************/
@@ -29454,7 +29646,7 @@
 	
 	exports.default = promiseMiddleware;
 	
-	var _isPromise = __webpack_require__(/*! ./isPromise */ 266);
+	var _isPromise = __webpack_require__(/*! ./isPromise */ 269);
 	
 	var _isPromise2 = _interopRequireDefault(_isPromise);
 	
@@ -29621,7 +29813,7 @@
 	}
 
 /***/ }),
-/* 266 */
+/* 269 */
 /*!******************************************************!*\
   !*** ./~/redux-promise-middleware/dist/isPromise.js ***!
   \******************************************************/
@@ -29645,7 +29837,7 @@
 	}
 
 /***/ }),
-/* 267 */
+/* 270 */
 /*!*****************************************!*\
   !*** ./src/app/reducers/mathReducer.js ***!
   \*****************************************/
@@ -29688,7 +29880,7 @@
 	exports.default = mathReducer;
 
 /***/ }),
-/* 268 */
+/* 271 */
 /*!*****************************************!*\
   !*** ./src/app/reducers/userReducer.js ***!
   \*****************************************/
