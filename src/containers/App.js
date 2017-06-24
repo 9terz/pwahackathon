@@ -20,12 +20,16 @@ class App extends React.Component {
     render() {
         return (
             <Router>
-                <div>
-                <Route exact path="/" component={Home}/>
-                <Route path="/camera" component={Camera}/>
-                <Route path="/top-rank" component={TopRank}/>
-                <Route path="/previous" component={Previous}/>
-                <Route path="/ranking" component={Ranking}/>
+                <div id="root-bg" className='thaibg'>
+                    <img id="bg-jpg" src="/img/huay.jpg" alt="just bg"/>
+                    <p>{this.props.image.bgOpactiy}</p>
+                    <div>
+                        <Route exact path="/" component={Home}/>
+                        <Route path="/camera" component={Camera}/>
+                        <Route path="/top-rank" component={TopRank}/>
+                        <Route path="/previous" component={Previous}/>
+                        <Route path="/ranking" component={Ranking}/>
+                    </div>
                 </div>
             </Router>
         );
@@ -35,7 +39,8 @@ class App extends React.Component {
 const mapStateToProps = (state) => {
   return {
       user: state.user,
-      math: state.math
+      math: state.math,
+      image: state.image
   };
 };
 

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { withRouter } from 'react-router-dom'
 import Webcam from 'react-webcam';
 
-import { upLoadImage } from 'actions/imageAction';
+import { upLoadImage, decrementOpacity } from 'actions/imageAction';
 
 const Camera = class Camera extends React.Component {
     constructor(props) {
@@ -42,6 +42,11 @@ const Camera = class Camera extends React.Component {
     uploadImage = () => {
         console.log('upload image');
         this.props.upLoadImage(this.state.screenshot)
+    };
+
+    decrementOpacity = (amount) => {
+        console.log('dec',amount);
+        this.props.decrementOpacity(amount);
     };
 
     opencamera = () => {
@@ -86,12 +91,13 @@ const Camera = class Camera extends React.Component {
                     // snowDiv.className += " active";
                     var image = document.getElementById("my-image");
                     this.setState({img_opa: this.state.img_opa - 0.05})
+                    this.decrementOpacity(0.05);
                     image.style.opacity = this.state.img_opa;
                 }
     };
 
     componentDidMount(){
-        
+        let that = this;
         console.log('camear did mount');
         window.addEventListener('devicemotion', (event) =>{
             let x = event.acceleration.x;
@@ -107,7 +113,8 @@ const Camera = class Camera extends React.Component {
                     // var snowDiv = document.getElementById("snow");
                     // snowDiv.className += " active";
                     var image = document.getElementById("my-image");
-                    image.style.opacity -= 0.05 
+                    that.decrementOpacity(0.5);
+                    image.style.opacity = this.props.bgOpactiy;
                 }
         });
         this.opencamera();
@@ -150,7 +157,8 @@ const Camera = class Camera extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    img: state.img
+    // img: state.img,
+    // bgOpactiy: state.bgOpactiy
   };
 };
 
@@ -158,6 +166,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
         upLoadImage: (img) => {
             dispatch(upLoadImage(dispatch, img));
+        },
+        decrementOpacity: (amount) => {
+            dispatch(decrementOpacity(dispatch, amount));
         }
     };
 };
