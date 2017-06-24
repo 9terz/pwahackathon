@@ -1,7 +1,8 @@
 const imageReducer = (state = {
     img: null,
     uploaded: false,
-    name: ''
+    name: '',
+    bgOpactiy: 1.0,
 }, action) => {
     switch (action.type) {
         case "UPLOAD":
@@ -16,6 +17,15 @@ const imageReducer = (state = {
             state = {
                 ...state,
                 name: action.payload
+            };
+            break;
+        case "DEC_OPACITY":
+            var bg = document.getElementById("bg-jpg");
+            // bg.style.backgroundColor = `rgba(0, 0, 0, ${})`;
+            bg.style.opacity = state.bgOpactiy - action.payload;
+            state = {
+                ...state,
+                bgOpactiy: state.bgOpactiy - action.payload
             };
             break;
     }

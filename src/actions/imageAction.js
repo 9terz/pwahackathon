@@ -1,5 +1,12 @@
 import { storageRef } from './database';
 
+export function decrementOpacity(dispatch, amount){
+    return {
+        type: "DEC_OPACITY",
+        payload: amount
+    }
+}
+
 export function upLoadImage(dispatch, img) {
     console.log('upload image action called');
     console.log(img);
