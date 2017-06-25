@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { withRouter } from 'react-router-dom'
+import { withRouter, Redirect } from 'react-router-dom'
 import Webcam from 'react-webcam';
 import FontAwesome from 'react-fontawesome';
 import ScratchCard from 'react-scratchcard';
@@ -106,6 +106,16 @@ const Camera = class Camera extends React.Component {
         })
         .catch(function(err) { console.log(err.name + ": " + err.message); });
         // always check for errors at the end.
+    }
+    playAgain = () => {
+        console.log('play again');
+        this.setState({screenshot:null});
+        this.setState({img_opa:1.0});
+        this.setState({step:0});
+        // this.router.history.push('/');
+        this.setState({
+            mustRedirect: true,
+        })
     }
     test = () => {
         this.setState({
@@ -244,7 +254,10 @@ const Camera = class Camera extends React.Component {
                             </div>
                             <div className="columns">
                                 <div className="column is-6">
-                                    <Link to={"/camera"}><a className="button goto-cap">ลองอีกครั้ง</a></Link>
+                                    <a className="button goto-cap" onClick={this.playAgain} >ลองอีกครั้ง</a>
+                                    {
+                                        this.state.mustRedirect && ( <Redirect to={'/'}/> )
+                                    }
                                 </div>
                                 <div className="column is-6">
                                     <Link to={"/camera"}><a className="button share">แชร์เลขเด็ด</a></Link>
