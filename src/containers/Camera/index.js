@@ -29,6 +29,8 @@ const Camera = class Camera extends React.Component {
                 text.style.display = 'none';
                 console.log('The card is now clear!')
                 this.getRichNumber()
+                // document.getElementById('sound-finish').play()
+                new Audio('/audio/ruay-sathu-sudyod.mp3').play().volume = 2.0
             }
         };
         this.state = {
@@ -108,7 +110,7 @@ const Camera = class Camera extends React.Component {
         .catch(function(err) { console.log(err.name + ": " + err.message); });
         // always check for errors at the end.
     }
-    
+
     playAgain = () => {
         console.log('play again');
         this.setState({screenshot:null});
@@ -119,7 +121,7 @@ const Camera = class Camera extends React.Component {
             mustRedirect: true,
         })
         this.props.setOpacity(1.0);
-        
+
     }
     test = () => {
         this.setState({
@@ -182,7 +184,7 @@ const Camera = class Camera extends React.Component {
     }
 
     getResult = () => {
-        
+
 }
 
     getRichNumber() {
@@ -206,7 +208,8 @@ const Camera = class Camera extends React.Component {
     render() {
         return (
             <div id="cameraMainDiv" className="container is-fluid has-text-centered">
-                <audio src="/audio/newyork.mp3" id="sound-shake"/>
+                <audio src="/audio/mopmap.mp3" id="sound-shake"/>
+                <audio src="/audio/ruay-sathu-sudyod.mp3.mp3" id="sound-finish"/>
                 <canvas id="c" style={{'display':'none'}}></canvas>
                 <div id="allcontent">
                     <div id="snow">

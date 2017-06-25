@@ -5,10 +5,20 @@ import {
   Link
 } from 'react-router-dom'
 
+import './Home.scss'
+
 export const Home = (props) => {
+    const play = () => {
+        document.getElementById('intro-music').play()
+        document.getElementById('start-app').style.display = 'none'
+    }
+
     return (
         <div>
-        <audio src="/audio/intro-ok.mp3" autoPlay="true" loop="true"/>
+        <div id="start-app">
+            <button id="start-app-btn" onClick={() => play()}>ตั้งจิตอธิษฐาน</button>
+        </div>
+        <audio id="intro-music" src="/audio/intro-ok.mp3" loop="true"/>
             <div className="container is-fluid has-text-centered">
                 <div>
                     <img src="img/treeinheaven.webp" alt=""/>
