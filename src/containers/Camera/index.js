@@ -10,6 +10,8 @@ import {
   Link
 } from 'react-router-dom'
 
+import './style.scss'
+
 const Camera = class Camera extends React.Component {
     constructor(props) {
         super(props);
@@ -41,7 +43,7 @@ const Camera = class Camera extends React.Component {
     setRef = (webcam) => {
         this.webcam = webcam;
     }
-    
+
     capture = () => {
         var video = document.querySelector('video');
         var canvas = document.getElementById("c");
@@ -74,19 +76,19 @@ const Camera = class Camera extends React.Component {
         let that = this;
         var constraints = {
             audio: false,
-            video: { 
+            video: {
                 facingMode: "environment"
               }
-        }; 
+        };
         console.log('starting');
         navigator.mediaDevices.getUserMedia(constraints)
         .then(function(mediaStream) {
         var video = document.querySelector('video');
         var canvas = document.getElementById("c");
-        
+
 		var button = document.getElementById("b");
-        
-        
+
+
         video.srcObject = mediaStream;
         console.log('width',mediaStream.width);
         video.onloadedmetadata = function(e) {
@@ -122,8 +124,8 @@ const Camera = class Camera extends React.Component {
             allcontent.style.display = "none";
             let scratchDiv = document.getElementById("scratchDiv");
             scratchDiv.style.display = "block"
-            
-            
+
+
         }
     };
 
@@ -159,7 +161,7 @@ const Camera = class Camera extends React.Component {
         });
         this.opencamera();
         // this.updateCanvas();
-        
+
     }
     // updateCanvas() {
     //     console.log('start draw text');
@@ -170,8 +172,8 @@ const Camera = class Camera extends React.Component {
     //     ctx.font = "30px Arial";
     //     ctx.fillStyle = "red";
     //     ctx.textAlign = "center";
-    //     // ctx.fillText("Hello World", canvas[0].width/2, canvas[0].height/2); 
-    //     ctx.fillText("Hello World", 0, 0); 
+    //     // ctx.fillText("Hello World", canvas[0].width/2, canvas[0].height/2);
+    //     ctx.fillText("Hello World", 0, 0);
     //         // console.log('end draw text');
     // }
 
@@ -209,7 +211,7 @@ const Camera = class Camera extends React.Component {
                     <p>{this.state.shakeProgress}</p>
                     <a onClick={this.test}>increment</a>
                     <a onClick={this.test}>swipe</a>
-                    
+
                 </div>
                 <div id="scratchDiv" style={{
                     'display':'none',
@@ -218,12 +220,10 @@ const Camera = class Camera extends React.Component {
                         ถูเบาๆ
                     </div>
                     <ScratchCard {...this.settings}>
-                        <div className="container">
-                            <div>
-                                เลข
-                            </div>
-                            <div>
-                                999
+                        <div className="container is-fluid">
+                            <div id="circle-number" className="column is-4 is-offset-4">
+                                <img src="/img/circle-rich.png" alt="" />
+                                <p id="rich-number">123</p>
                             </div>
                             <div className="columns">
                                 <div className="column is-6">
@@ -234,13 +234,13 @@ const Camera = class Camera extends React.Component {
                                 </div>
                             </div>
                         </div>
-                        
+
                         {/*Congratulations! You WON!*/}
-                        
+
                     </ScratchCard>
                 </div>
-                
-                
+
+
             </div>
         );
     }

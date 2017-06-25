@@ -34,7 +34,7 @@ body {
   font-size: 1.3rem !important;
   height: 50% !important;
   background-color: #fff007;
-  
+
   border-color: black !important;
 }
 
@@ -66,11 +66,11 @@ body {
 }
 
 [data-reactroot] {
-  height: 100% !important; 
+  height: 100% !important;
 }
 
 .thaibg {
-  
+
   /*background-image: url('/img/huay.jpg');
   background-position: center;
   background-size: cover;
@@ -133,7 +133,7 @@ html {
   0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
   50% {background-position: 500px 500px, 100px 200px, -100px 150px;}
   100% {background-position: 500px 1000px, 200px 400px, -100px 300px;}
-}	
+}
 .btn-lr-margin{
   margin-left: 2%;
   margin-right: 2%;
@@ -192,11 +192,10 @@ html {
   }
 }
 .ScratchCard__Canvas{
-  position: absolute;
-  top: 0px;
-  z-index: 1;
-  left: 0px;
-
+    position: absolute;
+    top: 0px;
+    z-index: 1;
+    left: 0px;
 }
 
 .scratchText{
