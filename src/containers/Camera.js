@@ -6,6 +6,9 @@ import FontAwesome from 'react-fontawesome';
 import ScratchCard from 'react-scratchcard';
 
 import { upLoadImage, decrementOpacity } from 'actions/imageAction';
+import {
+  Link
+} from 'react-router-dom'
 
 const Camera = class Camera extends React.Component {
     constructor(props) {
@@ -18,7 +21,11 @@ const Camera = class Camera extends React.Component {
             height: h,
             image: '/img/grey.png',
             finishPercent: 50,
-            onComplete: () => console.log('The card is now clear!')
+            onComplete: () => {
+                var text = document.getElementById("scratchText")
+                text.style.display = 'none';
+                console.log('The card is now clear!')
+            }
         };
         this.state = {
           screenshot: null,
@@ -115,6 +122,8 @@ const Camera = class Camera extends React.Component {
             allcontent.style.display = "none";
             let scratchDiv = document.getElementById("scratchDiv");
             scratchDiv.style.display = "block"
+            
+            
         }
     };
 
@@ -149,8 +158,22 @@ const Camera = class Camera extends React.Component {
             }
         });
         this.opencamera();
+        // this.updateCanvas();
         
     }
+    // updateCanvas() {
+    //     console.log('start draw text');
+    //     // var canvas = document.querySelector("canvas");
+    //     var canvas = document.getElementsByClassName("ScratchCard__Canvas");
+    //     console.log(canvas);
+    //     var ctx = canvas[0].getContext("2d");
+    //     ctx.font = "30px Arial";
+    //     ctx.fillStyle = "red";
+    //     ctx.textAlign = "center";
+    //     // ctx.fillText("Hello World", canvas[0].width/2, canvas[0].height/2); 
+    //     ctx.fillText("Hello World", 0, 0); 
+    //         // console.log('end draw text');
+    // }
 
     render() {
         return (
@@ -191,10 +214,27 @@ const Camera = class Camera extends React.Component {
                 <div id="scratchDiv" style={{
                     'display':'none',
                     }}>
+                    <div id="scratchText" className="scratchText">
+                        ถูเบาๆ
+                    </div>
                     <ScratchCard {...this.settings}>
-                        <div>
-                            <p>Hello</p>
+                        <div className="container">
+                            <div>
+                                เลข
+                            </div>
+                            <div>
+                                999
+                            </div>
+                            <div className="columns">
+                                <div className="column is-6">
+                                    <Link to={"/camera"}><a className="button goto-cap">ลองอีกครั้ง</a></Link>
+                                </div>
+                                <div className="column is-6">
+                                    <Link to={"/camera"}><a className="button share">แชร์เลขเด็ด</a></Link>
+                                </div>
+                            </div>
                         </div>
+                        
                         {/*Congratulations! You WON!*/}
                         
                     </ScratchCard>

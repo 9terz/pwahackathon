@@ -47,6 +47,15 @@ body {
   border-color: black !important;
 }
 
+.button.share{
+  color: white;
+  font-family: 'Trirong' !important;
+  font-size: 1.3rem !important;
+  height: 50% !important;
+  background-color: #4267b2;
+  border-color: black !important;
+}
+
 .mybtn.button {
   font-family: 'Trirong' !important;
   font-size: 1.3rem !important;
@@ -140,21 +149,30 @@ html {
   width: 150%;
   margin-left: -25%;
   background-color: tomato;
-  height: 1px;
+  height: 0px;
   position: absolute;
   top: 40%;
   z-index: 2;
   box-shadow: 0 0 4px red;
-  animation: scanning 2s infinite;
+  /*animation: scanning 2s infinite;*/
 }
 .diode {
   animation: beam .01s infinite;
 }
 @keyframes beam {
-  /*50% {
+  50% {
     opacity: 0;
-  }*/
+  }
 }
+/*@keyframes spin {
+  50%{
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+  }
+}*/
 
 @keyframes scanning {
   0% {
@@ -178,6 +196,19 @@ html {
   top: 0px;
   z-index: 1;
   left: 0px;
+
+}
+
+.scratchText{
+  /*right: 35%;
+    left: 35%;*/
+    /*width: 30%;*/
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    z-index: 2;
+    text-align: center;
+    font-size: 3rem !important;
 }
 
 #cameraMainDiv{
