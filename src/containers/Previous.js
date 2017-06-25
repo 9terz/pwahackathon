@@ -31,7 +31,7 @@ export class Previous extends React.Component {
                 <h1 style={{ 'fontSize': 2 + 'rem' }}>รางวัลที่ 1</h1>
                 <br></br>
                 <div className="columns">
-                    <div className="column mytd is-2 is-offset-5">
+                    <div className="column mytd is-1 is-offset-5 is-narrow">
                         {this.state.lotto.one}
                     </div>
 
@@ -40,10 +40,8 @@ export class Previous extends React.Component {
                 <h1 style={{ 'fontSize': 2 + 'rem' }}>ข้างเคียงรางวัลที่ 1</h1>
                 <br></br>
                 <div className="columns">
-                    <div className="column is-5">
-                    </div>
                     {this.nearNumber(this.state.lotto.one).map((num) => {
-                        return <div className="column mytd is-1">{num}</div>
+                        return <div className="column mytd is-one-quarter is-narrow">{num}</div>
                     })}
 
                 </div>
@@ -51,22 +49,20 @@ export class Previous extends React.Component {
                 <br></br>
 
                 <div className="columns is-multiline is-mobile">
-                    <div className="column is-3">
-                    </div>
+                    {/*<div className="column is-3">
+                    </div>*/}
                     {
                         this.state.lotto.two.map((num) => {
-                            return <div className='column is-1 mytd'>{num}</div>
+                            return <div className='column is-one-quarter mytd is-narrow'>{num}</div>
                         })}
                 </div>
 
                 <h1 style={{ 'fontSize': 2 + 'rem' }}>รางวัลที่ 3</h1>
                 <br></br>
                 <div className="columns is-multiline is-mobile">
-                    <div className="column is-1">
-                    </div>
                     {
                         this.state.lotto.three.map((num) => {
-                            return <div className='column is-1 mytd'>{num}</div>
+                            return <div className='column is-one-quarter mytd is-narrow'>{num}</div>
                         })}
                 </div>
 
@@ -79,7 +75,7 @@ export class Previous extends React.Component {
                             {/*</div>*/}
                             {
                                 this.state.lotto.four.map((num) => {
-                                    return <div className='column is-1 mytd'>{num}</div>
+                                    return <div className='column is-one-quarter mytd is-narrow'>{num}</div>
                                 })}
                         </div>
                     </div>
@@ -94,7 +90,7 @@ export class Previous extends React.Component {
                             {/*</div>*/}
                             {
                                 this.state.lotto.five.map((num) => {
-                                    return <div className='column is-1 mytd'>{num}</div>
+                                    return <div className='column is-one-quarter mytd'>{num}</div>
                                 })}
                         </div>
                     </div>
