@@ -1,4 +1,5 @@
 import React from 'react'
+import _ from 'lodash'
 
 import { database } from 'actions/database'
 
@@ -8,108 +9,7 @@ export default class Ranking extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            ranks: [
-                {
-                    number: 99,
-                    count: 20,
-                    photos: [],
-                },
-                {
-                    number: 23,
-                    count: 39,
-                    photos: [],
-                },
-                {
-                    number: 42,
-                    count: 230,
-                    photos: [],
-                },
-                {
-                    number: 12,
-                    count: 230,
-                    photos: [],
-                },
-                {
-                    number: 32,
-                    count: 230,
-                    photos: [],
-                },
-                {
-                    number: 42,
-                    count: 20,
-                    photos: [],
-                },
-                {
-                    number: 42,
-                    count: 230,
-                    photos: [],
-                },
-                {
-                    number: 12,
-                    count: 230,
-                    photos: [],
-                },
-                {
-                    number: 32,
-                    count: 230,
-                    photos: [],
-                },
-                {
-                    number: 42,
-                    count: 20,
-                    photos: [],
-                },
-                {
-                    number: 42,
-                    count: 230,
-                    photos: [],
-                },
-                {
-                    number: 12,
-                    count: 230,
-                    photos: [],
-                },
-                {
-                    number: 32,
-                    count: 230,
-                    photos: [],
-                },
-                {
-                    number: 42,
-                    count: 20,
-                    photos: [],
-                },
-                {
-                    number: 32,
-                    count: 230,
-                    photos: [],
-                },
-                {
-                    number: 42,
-                    count: 20,
-                    photos: [],
-                },
-                {
-                    number: 42,
-                    count: 230,
-                    photos: [],
-                },
-                {
-                    number: 12,
-                    count: 230,
-                    photos: [],
-                },
-                {
-                    number: 32,
-                    count: 230,
-                    photos: [],
-                },
-                {
-                    number: 42,
-                    count: 20,
-                    photos: [],
-                },
-            ]
+            ranks: {},
         }
     }
 
@@ -127,15 +27,15 @@ export default class Ranking extends React.Component {
     }
 
     listRanking() {
-        return this.state.ranks.map((rank, index) => {
+        return Object.keys(this.state.ranks).map((rank, index) => {
             return (
                 <div className="columns is-mobile has-text-centered"
                 key={index}>
                     <div className="column is-4">
-                        {rank.number}
+                        { rank }
                     </div>
                     <div className="column is-4">
-                        {rank.count}
+                        { this.state.ranks[rank] }
                     </div>
                     <div className="column is-4">
                         Photo
@@ -146,10 +46,13 @@ export default class Ranking extends React.Component {
     }
 
     getRanking() {
-        const numbers = database.ref('rich-numbers')
-        numbers.on('value', (s) => {
-            console.log(s)
-            console.log(s.val())
+        const ref = database.ref('img')
+        ref.on('value', (s) => {
+           const numbers = s.val()
+           console.log(numbers)
+           this.setState({
+               ranks: _.countBy(numbers, 'predictResult'),
+           })
         }, (err) => {
             console.log(err)
         })
