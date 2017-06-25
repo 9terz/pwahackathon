@@ -38,3 +38,19 @@
         }
     }
 }
+
+#open-eye {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 12345;
+    // background-color: #fff;
+    display: none;
+    width: 100%;
+    // height: 100%;
+    #open-eye-btn {
+        margin-top: 2em;
+        font-size: 3em;
+        padding: 1em;
+    }
+}

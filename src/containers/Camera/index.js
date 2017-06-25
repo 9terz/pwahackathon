@@ -30,7 +30,6 @@ const Camera = class Camera extends React.Component {
                 console.log('The card is now clear!')
                 this.getRichNumber()
                 // document.getElementById('sound-finish').play()
-                new Audio('/audio/ruay-sathu-sudyod.mp3').play().volume = 2.0
             }
         };
         this.state = {
@@ -166,7 +165,8 @@ const Camera = class Camera extends React.Component {
                     that.setState({img_opa: this.state.img_opa - 0.05})
                     that.decrementOpacity(0.05);
                     image.style.opacity = this.state.img_opa;
-                    document.getElementById('sound-shake').play()
+                    // document.getElementById('sound-shake').play()
+                    new Audio('/audio/mopmap.mp3').play()
                 }
                 if (this.state.img_opa - 0.05 <= 0) {
                     console.log('step2');
@@ -191,25 +191,76 @@ const Camera = class Camera extends React.Component {
         console.log('get result');
         console.log(this.props.img.name);
         let img_name = this.props.img.name;//'1498374219943.jpg'
+        let result = '113'
+
         img_name = img_name.slice(0,img_name.indexOf('.'));
         database.ref('/img/'+img_name).once('value')
         .then((snapshot)=>{
             console.log(snapshot.val().predictResult);
-            let result = snapshot.val().predictResult;
+            result = snapshot.val().predictResult;
             this.props.setResult(result);
             this.setState({
-                richNumber: result,
+                richNumber2: result,
             })
+
+            document.getElementById('open-eye').style.display = 'block'
         }).catch((err) =>{
-            console.log('error1234 ',err);
-        });
+            // console.log('error1234 ',err);
+            result = ''+Math.floor( Math.random() * 10)+''+Math.floor( Math.random() * 10)+''+Math.floor( Math.random() * 10)
+            this.setState({
+                richNumber2: result,
+            })
+            this.speakNumber(result)
+        })
+    }
+
+    speakNumber(result) {
+        // document.getElementById('speak-num-start').play()
+
+        // setTimeout(()=>{
+        //     const a = document.getElementById('speak-num-1')
+        //     a.src = '/audio/' + result[0] + '.mp3'
+        //     a.play()
+        // }, 1500);
+
+        // setTimeout(()=>{
+        //     const a = document.getElementById('speak-num-1')
+        //     a.src = '/audio/' + result[1] + '.mp3'
+        //     a.play()
+        // }, 2500);
+
+        // setTimeout(()=>{
+        //     const a = document.getElementById('speak-num-1')
+        //     a.src = '/audio/' + result[2] + '.mp3'
+        //     a.play()
+        // }, 3500);
+
+        // setTimeout(()=>{
+        //     document.getElementById('speak-ruay').play()
+        // }, 4500);
+        document.getElementById('speak-ruay').play()
     }
 
     render() {
         return (
             <div id="cameraMainDiv" className="container is-fluid has-text-centered">
-                <audio src="/audio/mopmap.mp3" id="sound-shake"/>
-                <audio src="/audio/ruay-sathu-sudyod.mp3.mp3" id="sound-finish"/>
+                <div id="open-eye">
+                    <button id="open-eye-btn" className="button"
+                        onClick={() => {
+                            this.speakNumber(this.state.richNumber2)
+                            this.setState({
+                                richNumber: this.state.richNumber2,
+                            })
+                            document.getElementById('open-eye').style.display = 'none'
+                        }}>เบิกเนตร</button>
+                </div>
+                <audio src="/audio/number_t_org.mp3" id="speak-num-start"/>
+
+                <audio src="/audio/0.mp3" id="speak-num-1"/>
+                <audio src="/audio/0.mp3" id="speak-num-2"/>
+                <audio src="/audio/0.mp3" id="speak-num-3"/>
+
+                <audio src="/audio/ruay-sathu-sudyod.mp3" id="speak-ruay"/>
                 <canvas id="c" style={{'display':'none'}}></canvas>
                 <div id="allcontent">
                     <div id="snow">
@@ -228,21 +279,22 @@ const Camera = class Camera extends React.Component {
                         }
                     </div>
                     <div className="center-justified">
-                        {!this.state.screenshot &&
-                            <a className="button camera" onClick={this.capture}>
+                        {!this.state.screenshot ?
+                            (<a className="button camera" onClick={this.capture}>
                                 <FontAwesome
                                     className='super-crazy-colors'
                                     name='camera-retro'
                                     style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)' }}
                                 />
                                 &nbsp;จับภาพ
-                            </a>
+                            </a>):
+                                (
+                                    <div>
+                                        <a onClick={this.test} className="button">เขย่า</a>
+                                    </div>
+                                )
                             }
                     </div>
-                    <p>{this.state.shakeProgress}</p>
-                    <a onClick={this.test}>increment</a>
-                    <a onClick={this.test}>swipe</a>
-
                 </div>
                 <div id="scratchDiv" style={{
                     'display':'none',
@@ -266,15 +318,15 @@ const Camera = class Camera extends React.Component {
                                  }</p>
                             </div>
                             <div className="columns">
-                                <div className="column is-6">
+                                <div className="column is-12">
                                     <a className="button goto-cap" onClick={this.playAgain} >ลองอีกครั้ง</a>
                                     {
                                         this.state.mustRedirect && ( <Redirect to={'/'}/> )
                                     }
                                 </div>
-                                <div className="column is-6">
+                                {/*<div className="column is-6">
                                     <Link to={"/camera"}><a className="button share">แชร์เลขเด็ด</a></Link>
-                                </div>
+                                </div>*/}
 
                             </div>
                         </div>
