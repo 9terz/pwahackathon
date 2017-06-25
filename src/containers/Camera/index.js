@@ -4,8 +4,9 @@ import { withRouter, Redirect } from 'react-router-dom'
 import Webcam from 'react-webcam';
 import FontAwesome from 'react-fontawesome';
 import ScratchCard from 'react-scratchcard';
+import { database } from '../../actions/database';
 
-import { upLoadImage, decrementOpacity, readResult } from 'actions/imageAction';
+import { upLoadImage, decrementOpacity, setResult, setOpacity } from 'actions/imageAction';
 import {
   Link
 } from 'react-router-dom'
@@ -107,10 +108,7 @@ const Camera = class Camera extends React.Component {
         .catch(function(err) { console.log(err.name + ": " + err.message); });
         // always check for errors at the end.
     }
-    getResult = () => {
-        console.log('get result');
-        this.props.getResult('1498374219943.jpg');
-    }
+    
     playAgain = () => {
         console.log('play again');
         this.setState({screenshot:null});
@@ -120,6 +118,8 @@ const Camera = class Camera extends React.Component {
         this.setState({
             mustRedirect: true,
         })
+        this.props.setOpacity(1.0);
+        
     }
     test = () => {
         this.setState({
@@ -181,24 +181,27 @@ const Camera = class Camera extends React.Component {
 
     }
 
+    getResult = () => {
+        
+}
+
     getRichNumber() {
-        this.setState({
-            richNumber: '371',
-        })
+        console.log('get result');
+        console.log(this.props.img.name);
+        let img_name = this.props.img.name;//'1498374219943.jpg'
+        img_name = img_name.slice(0,img_name.indexOf('.'));
+        database.ref('/img/'+img_name).once('value')
+        .then((snapshot)=>{
+            console.log(snapshot.val().predictResult);
+            let result = snapshot.val().predictResult;
+            this.props.setResult(result);
+            this.setState({
+                richNumber: result,
+            })
+        }).catch((err) =>{
+            console.log('error1234 ',err);
+        });
     }
-    // updateCanvas() {
-    //     console.log('start draw text');
-    //     // var canvas = document.querySelector("canvas");
-    //     var canvas = document.getElementsByClassName("ScratchCard__Canvas");
-    //     console.log(canvas);
-    //     var ctx = canvas[0].getContext("2d");
-    //     ctx.font = "30px Arial";
-    //     ctx.fillStyle = "red";
-    //     ctx.textAlign = "center";
-    //     // ctx.fillText("Hello World", canvas[0].width/2, canvas[0].height/2);
-    //     ctx.fillText("Hello World", 0, 0);
-    //         // console.log('end draw text');
-    // }
 
     render() {
         return (
@@ -207,7 +210,7 @@ const Camera = class Camera extends React.Component {
                 <canvas id="c" style={{'display':'none'}}></canvas>
                 <div id="allcontent">
                     <div id="snow">
-                        <a className="button goto-cap" onClick={this.getResult} >result</a>
+                        {/*<a className="button goto-cap" onClick={this.getResult} >result</a>*/}
                         {this.state.screenshot ?
                             <img id="my-image" src={this.state.screenshot}/>
                             :
@@ -286,7 +289,7 @@ const Camera = class Camera extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    // img: state.img,
+    img: state.image,
     // bgOpactiy: state.bgOpactiy
   };
 };
@@ -299,8 +302,11 @@ const mapDispatchToProps = (dispatch) => {
         decrementOpacity: (amount) => {
             dispatch(decrementOpacity(dispatch, amount));
         },
-        getResult: (img_name) => {
-            dispatch(readResult(dispatch,img_name));
+        setOpacity: (num) => {
+            dispatch(setOpacity(dispatch, 1.0));
+        },
+        setResult: (img_name) => {
+            dispatch(setResult(dispatch,img_name));
         },
 
     };

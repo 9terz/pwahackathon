@@ -35,6 +35,14 @@ const imageReducer = (state = {
                 result: action.payload
             }
             break;
+        case "SET_OPACITY":
+            var bg = document.getElementById("bg-jpg");
+            bg.style.opacity = action.payload;
+            state = {
+                ...state,
+                bgOpactiy: action.payload
+            }
+            break;
     }
     return state;
 };
