@@ -9,7 +9,7 @@ export default class Ranking extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            ranks: {},
+            ranks: [],
         }
     }
 
@@ -27,15 +27,15 @@ export default class Ranking extends React.Component {
     }
 
     listRanking() {
-        return Object.keys(this.state.ranks).map((rank, index) => {
+        return this.state.ranks.map((rank, index) => {
             return (
                 <div className="columns is-mobile has-text-centered"
                 key={index}>
                     <div className="column is-4">
-                        { rank }
+                        { rank.number }
                     </div>
                     <div className="column is-4">
-                        { this.state.ranks[rank] }
+                        { rank.count }
                     </div>
                     <div className="column is-4">
                         Photo
@@ -50,8 +50,15 @@ export default class Ranking extends React.Component {
         ref.on('value', (s) => {
            const numbers = s.val()
            console.log(numbers)
+            const counted = _.countBy(numbers, 'predictResult')
+            console.log(counted)
+            const pack = Object.keys(counted).map(el => ({
+                number: el,
+                count: counted[el]
+            }))
+            console.log(pack)
            this.setState({
-               ranks: _.countBy(numbers, 'predictResult'),
+               ranks: _.sortBy(pack, 'count').reverse(),
            })
         }, (err) => {
             console.log(err)
