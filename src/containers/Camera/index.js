@@ -281,15 +281,15 @@ const Camera = class Camera extends React.Component {
                                  }</p>
                             </div>
                             <div className="columns">
-                                <div className="column is-6">
+                                <div className="column is-12">
                                     <a className="button goto-cap" onClick={this.playAgain} >ลองอีกครั้ง</a>
                                     {
                                         this.state.mustRedirect && ( <Redirect to={'/'}/> )
                                     }
                                 </div>
-                                <div className="column is-6">
+                                {/*<div className="column is-6">
                                     <Link to={"/camera"}><a className="button share">แชร์เลขเด็ด</a></Link>
-                                </div>
+                                </div>*/}
 
                             </div>
                         </div>
