@@ -164,6 +164,7 @@ const Camera = class Camera extends React.Component {
                     that.setState({img_opa: this.state.img_opa - 0.05})
                     that.decrementOpacity(0.05);
                     image.style.opacity = this.state.img_opa;
+                    document.getElementById('sound-shake').play()
                 }
                 if (this.state.img_opa - 0.05 <= 0) {
                     console.log('step2');
@@ -205,6 +206,7 @@ const Camera = class Camera extends React.Component {
     render() {
         return (
             <div id="cameraMainDiv" className="container is-fluid has-text-centered">
+                <audio src="/audio/newyork.mp3" id="sound-shake"/>
                 <canvas id="c" style={{'display':'none'}}></canvas>
                 <div id="allcontent">
                     <div id="snow">
@@ -270,7 +272,7 @@ const Camera = class Camera extends React.Component {
                                 <div className="column is-6">
                                     <Link to={"/camera"}><a className="button share">แชร์เลขเด็ด</a></Link>
                                 </div>
-                                
+
                             </div>
                         </div>
 

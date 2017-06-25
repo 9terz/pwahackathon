@@ -8,11 +8,12 @@ import {
 export const Home = (props) => {
     return (
         <div>
+        <audio src="/audio/intro-ok.mp3" autoPlay="true" loop="true"/>
             <div className="container is-fluid has-text-centered">
                 <div>
                     <img src="img/treeinheaven.webp" alt=""/>
                 </div>
-                <br></br>  
+                <br></br>
                 <div>
                     <Link to={"/camera"}><a className="button goto-cap">จับภาพลุ้นโชค !</a></Link>
                 </div>
