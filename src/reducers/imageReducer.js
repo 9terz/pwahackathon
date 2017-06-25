@@ -3,6 +3,7 @@ const imageReducer = (state = {
     uploaded: false,
     name: '',
     bgOpactiy: 1.0,
+    result:''
 }, action) => {
     switch (action.type) {
         case "UPLOAD":
@@ -27,6 +28,12 @@ const imageReducer = (state = {
                 ...state,
                 bgOpactiy: newOpacity
             };
+            break;
+        case "SET_RESULT":
+            state = {
+                ...state,
+                result: action.payload
+            }
             break;
     }
     return state;

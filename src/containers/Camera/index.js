@@ -5,7 +5,7 @@ import Webcam from 'react-webcam';
 import FontAwesome from 'react-fontawesome';
 import ScratchCard from 'react-scratchcard';
 
-import { upLoadImage, decrementOpacity } from 'actions/imageAction';
+import { upLoadImage, decrementOpacity, readResult } from 'actions/imageAction';
 import {
   Link
 } from 'react-router-dom'
@@ -107,6 +107,10 @@ const Camera = class Camera extends React.Component {
         .catch(function(err) { console.log(err.name + ": " + err.message); });
         // always check for errors at the end.
     }
+    getResult = () => {
+        console.log('get result');
+        this.props.getResult('1498374219943.jpg');
+    }
     playAgain = () => {
         console.log('play again');
         this.setState({screenshot:null});
@@ -201,6 +205,7 @@ const Camera = class Camera extends React.Component {
                 <canvas id="c" style={{'display':'none'}}></canvas>
                 <div id="allcontent">
                     <div id="snow">
+                        <a className="button goto-cap" onClick={this.getResult} >result</a>
                         {this.state.screenshot ?
                             <img id="my-image" src={this.state.screenshot}/>
                             :
@@ -262,6 +267,7 @@ const Camera = class Camera extends React.Component {
                                 <div className="column is-6">
                                     <Link to={"/camera"}><a className="button share">แชร์เลขเด็ด</a></Link>
                                 </div>
+                                
                             </div>
                         </div>
 
@@ -290,7 +296,11 @@ const mapDispatchToProps = (dispatch) => {
         },
         decrementOpacity: (amount) => {
             dispatch(decrementOpacity(dispatch, amount));
-        }
+        },
+        getResult: (img_name) => {
+            dispatch(readResult(dispatch,img_name));
+        },
+
     };
 };
 

@@ -1,5 +1,20 @@
-import { storageRef } from './database';
+import { database, storageRef } from './database';
 
+export function readResult(dispatch, img_name) {
+    let result;
+    img_name = img_name.slice(0,img_name.indexOf('.'));
+    database.ref('/img/'+img_name).once('value')
+    .then((snapshot)=>{
+        console.log('from database');
+        console.log(snapshot.val().predictResult);
+        result = snapshot.val().predictResult;
+    });
+    return {
+        type: "SET_RESULT",
+        payload: result
+    }
+    
+}
 export function decrementOpacity(dispatch, amount){
     return {
         type: "DEC_OPACITY",
