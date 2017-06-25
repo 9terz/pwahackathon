@@ -198,6 +198,24 @@ const Camera = class Camera extends React.Component {
             this.setState({
                 richNumber: result,
             })
+            
+            // let audio1 = document.getElementById("audio-1");
+            var audioOrg = new Audio('/audio/number_t_org.mp3');
+            audioOrg.play();
+            var audio1 = new Audio('/audio/' + result[0] + '.mp3');
+            setTimeout(()=>{audio1.play()}, 1500);
+            var audio2 = new Audio('/audio/' + result[1] + '.mp3');
+            setTimeout(()=>{audio2.play()}, 2500);
+            var audio3 = new Audio('/audio/' + result[2] + '.mp3');
+            setTimeout(()=>{audio3.play()}, 3500);
+
+            // let audio2 = document.getElementById("audio-2");
+            // audio2.src = '/audio/' + result[1] + '.mp3';
+            
+            // let audio3 = document.getElementById("audio-3");
+            // audio3.src = '/audio/' + result[2] + '.mp3';
+            // setTimeout(()=>{audio2.play()}, 4000);
+
         }).catch((err) =>{
             console.log('error1234 ',err);
         });
@@ -206,7 +224,7 @@ const Camera = class Camera extends React.Component {
     render() {
         return (
             <div id="cameraMainDiv" className="container is-fluid has-text-centered">
-                <audio src="/audio/newyork.mp3" id="sound-shake"/>
+                <audio src="/audio/newyork.mp3" id="sound-shake"/>                
                 <canvas id="c" style={{'display':'none'}}></canvas>
                 <div id="allcontent">
                     <div id="snow">
