@@ -224,7 +224,7 @@ const Camera = class Camera extends React.Component {
                     </div>
                     <div className="center-justified">
                         {!this.state.screenshot &&
-                            <a className="mybtn button is-primary btn-lr-margin" onClick={this.capture}>
+                            <a className="button camera" onClick={this.capture}>
                                 <FontAwesome
                                     className='super-crazy-colors'
                                     name='camera-retro'

@@ -55,12 +55,21 @@ body {
   background-color: #4267b2;
   border-color: black !important;
 }
-
-.mybtn.button {
+.button.camera{
+  color: white;
   font-family: 'Trirong' !important;
   font-size: 1.3rem !important;
   height: 50% !important;
+    background-color: #ab614c;
+    border-color: black !important;
+    padding: 0.3em !important;
 }
+
+/*.mybtn.button {
+  font-family: 'Trirong' !important;
+  font-size: 1.3rem !important;
+  height: 50% !important;
+}*/
 #test {
   font-size:110;
 }

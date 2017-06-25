@@ -31,15 +31,15 @@ export default class Ranking extends React.Component {
             return (
                 <div className="columns is-mobile has-text-centered"
                 key={index}>
-                    <div className="column is-4">
+                    <div className="column is-6">
                         { rank.number }
                     </div>
-                    <div className="column is-4">
+                    <div className="column is-6">
                         { rank.count }
                     </div>
-                    <div className="column is-4">
+                    {/*<div className="column is-4">
                         Photo
-                    </div>
+                    </div>*/}
                 </div>
             )
         })
@@ -75,15 +75,15 @@ export default class Ranking extends React.Component {
                         <img id="paper-img" src="/img/paper.png" alt="paper"/>
                         <div id="ranking">
                             <div className="columns is-mobile has-text-centered">
-                                <div className="column is-4">
+                                <div className="column is-6">
                                     เลขมงคล
                                 </div>
-                                <div className="column is-4">
+                                <div className="column is-6">
                                     จำนวนบังเกิด
                                 </div>
-                                <div className="column is-4">
+                                {/*<div className="column is-4">
                                     รูปภาพ
-                                </div>
+                                </div>*/}
                             </div>
                             {
                                 this.listRanking()
