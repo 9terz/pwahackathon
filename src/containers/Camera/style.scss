@@ -1,0 +1,35 @@
+#cameraMainDiv {
+    #scratchText {
+        -webkit-user-select: none;
+        -webkit-user-drag: none;
+    }
+    .button {
+        padding: 1em;
+    }
+
+    #circle-number {
+        position: relative;
+        -webkit-user-drag: none;
+        #rich-number {
+            -webkit-user-drag: none;
+            position: absolute;
+            top: 0;
+            left: 40%;
+            top: 40%;
+            font-size: 3em;
+            color: #00f;
+            text-shadow: 0px 0px 10px #0f0;
+        }
+        img {
+            -webkit-user-drag: none;
+            width: 100%;
+        }
+    }
+    .ScratchCard__Container {
+        // position: fixed !important;
+        // top: 0;
+        // left: 0;
+        // height: 100%;
+        // width: 100%;
+    }
+}

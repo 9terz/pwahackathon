@@ -33,9 +33,8 @@ class App extends React.Component {
                     <div>
                         <Route exact path="/" component={Home}/>
                         <Route path="/camera" component={Camera}/>
-                        <Route path="/top-rank" component={TopRank}/>
+                        <Route path="/top-rank" component={Ranking}/>
                         <Route path="/previous" component={Previous}/>
-                        <Route path="/ranking" component={Ranking}/>
                     </div>
                 </div>
             </Router>
