@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { database } from 'actions/database'
+
 import './style.scss'
 
 export default class Ranking extends React.Component {
@@ -121,12 +123,14 @@ export default class Ranking extends React.Component {
     componentDidMount() {
         window.addEventListener('load', this.setRankingHeight)
         window.addEventListener('resize', this.setRankingHeight)
+        this.getRanking()
     }
 
     listRanking() {
-        return this.state.ranks.map((rank) => {
+        return this.state.ranks.map((rank, index) => {
             return (
-                <div className="columns is-mobile has-text-centered">
+                <div className="columns is-mobile has-text-centered"
+                key={index}>
                     <div className="column is-4">
                         {rank.number}
                     </div>
@@ -139,6 +143,17 @@ export default class Ranking extends React.Component {
                 </div>
             )
         })
+    }
+
+    getRanking() {
+        const numbers = database.ref('rich-numbers')
+        numbers.on('value', (s) => {
+            console.log(s)
+            console.log(s.val())
+        }, (err) => {
+            console.log(err)
+        })
+        // console.log(numbers)
     }
 
     render() {

@@ -27,6 +27,7 @@ const Camera = class Camera extends React.Component {
                 var text = document.getElementById("scratchText")
                 text.style.display = 'none';
                 console.log('The card is now clear!')
+                this.getRichNumber()
             }
         };
         this.state = {
@@ -37,7 +38,8 @@ const Camera = class Camera extends React.Component {
           acc_x: 0,
           acc_y: 0,
           img_opa: 1.0,
-          step: 0
+          step: 0,
+          richNumber: 'loading',
         };
     }
     setRef = (webcam) => {
@@ -163,6 +165,12 @@ const Camera = class Camera extends React.Component {
         // this.updateCanvas();
 
     }
+
+    getRichNumber() {
+        this.setState({
+            richNumber: '371',
+        })
+    }
     // updateCanvas() {
     //     console.log('start draw text');
     //     // var canvas = document.querySelector("canvas");
@@ -223,7 +231,16 @@ const Camera = class Camera extends React.Component {
                         <div className="container is-fluid">
                             <div id="circle-number" className="column is-4 is-offset-4">
                                 <img src="/img/circle-rich.png" alt="" />
-                                <p id="rich-number">123</p>
+                                <p id="rich-number">{ this.state.richNumber === 'loading' ?
+                                    (
+                                        <div id="buddha-loading">
+                                            <img src="/img/buddha-loading.gif" alt=""/>
+                                        </div>
+                                    ) :
+                                    (
+                                        <div>{ this.state.richNumber }</div>
+                                    )
+                                 }</p>
                             </div>
                             <div className="columns">
                                 <div className="column is-6">

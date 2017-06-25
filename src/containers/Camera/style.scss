@@ -10,11 +10,17 @@
     #circle-number {
         position: relative;
         -webkit-user-drag: none;
+        #buddha-loading {
+            img {
+                width: 30%;
+            }
+        }
         #rich-number {
             -webkit-user-drag: none;
             position: absolute;
-            top: 0;
-            left: 40%;
+            left: 0;
+            width: 100%;
+            text-align: center;
             top: 40%;
             font-size: 3em;
             color: #00f;
